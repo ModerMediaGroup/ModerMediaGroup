@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Video production | Moder Media Group</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="foto/favicon.png" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@1..144,1..1000&display=swap" rel="stylesheet">
+    <meta name="description" content="Moder Media Group | Fotografija, Video produkcija, Grafično oblikovanje, Social media management.
+                                      Moder Media Group | Photography, Video production, Graphic design, Social media management.
+                                      Ljubljana, Slovenia">
+    <meta name="keywords" content="Fotografija, Photography, Photo Agency, Foto Agencija, fotograf, photographer, šport, dogodki, events, sports, stringer, video produkcija, video production,
+                                    snemanje, snemalec, grafika, graficno oblikovanje, graphic design, logo, spletne strani, logotip, Ljubljana, Slovenija, Slovenia,">
+    <meta name="author" content="Moder Media Group, Nik Moder s.p.">
+</head>
+<body>
+        <div class="navinfo">
+        <p>info@modermediagroup.com</p>
+    </div>
+<nav>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="photo.html">Photography</a></li>
+        <li class="active"><a href="video.html">Videography</a></li>
+        <li><a href="Graphic-design.html">Graphic design</a></li>
+        <li><a href="mailto:info@modermediagroup.com">Contact</a></li>
+    </ul>
+</nav>
+<div class="hero-p">
+    <h1>Video production</h1>
+    <p>Sports, Events, Corporate, PR, Internal use,<br>Educational, Promotional, Workouts.</p>
+    </div>
+    <div class="hero">
+        <img src="foto/vhero.jpg" alt="!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!!!TEMP!!">
+    </div>
+    <div class="s-info">
+        <h3>We record:</h3>
+        <p>Videos you and your clients will love watching.<br>
+        Anything from event recaps, workout videos or<br>showing your employees how to use a machine, we can do.<br>
+        Large scale production, simple social media video or something in between.<br></p>
+        <video autoplay loop>
+  <source src="foto/Showreel 2026 _ Short Version _ Moder Media Group.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+    </div>
+    <div class="contact">
+        <p>Interested? <a href="mailto:info@modermediagroup.com">info@modermediagroup.com</a></p>
+        <img src="foto/contact2.jpg" alt="Cupcake at DOCENTRIC POTY">
+    </div>
+    <footer>
+        <div class="info-p"><p>Name: Fotografske storitve, Nik Moder s.p.<br>
+                                Address: Videm 37, 1262 Dol pri Ljubljani, Slovenia<br>
+                                VAT ID: 17682193 | International VAT ID: SI 17682193<br>
+                            Business reg. number: 9651314000<br>
+                            Bank: SI56 0284 3026 5905 116<br><br>
+                            Contact info:<br>
+                            Phone: +386 40 598 035<br>
+                            E-mail: info@modermediagroup.com<br><br>
+                        </p></div>
+            <p>All Content &copy 2026 | Moder Media Group, Nik Moder s.p.</p>
+    </footer>
+    <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    menuToggle.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : ''; /* Prevents background scrolling while menu is open */
+  });
+
+  // Close menu automatically when a link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+</body>
+</html>

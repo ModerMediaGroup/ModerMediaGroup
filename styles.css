@@ -1,14 +1,535 @@
 body {
     background-color: black;
+    margin:0;
+    overflow-x: hidden;
 }
 
-.dev {
-    margin: 0px;
-    text-align: center;
-    color: white;
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #202020;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #535353;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #858585;
+}
+
+.navinfo {
+  color: white;
+  position: absolute;
+  margin-top: 1vh;
+  margin-left: 2vw;
+  font-family: "Google Sans Flex", sans-serif;
+  font-weight: 200;
+  pointer-events: all;
+  z-index: 11;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2vh 2vw 0;
+  z-index: 100;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-family: "Google Sans Flex", sans-serif;
+  font-weight: 200;
+  transition: opacity 0.3s;
+}
+
+nav ul li a:hover {
+  opacity: 0.7;
+}
+
+nav .active a {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Hamburger button (hidden on desktop) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101; /* Stays clickable above the open mobile drawer */
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animate hamburger into an "X" when open */
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  nav {
+    padding: 24px 6vw;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav ul {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(8, 8, 8, 0.96); /* Matches your footer dark theme */
+    backdrop-filter: blur(8px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  nav ul.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  nav ul li a {
+    font-size: 1.75rem;
+    font-weight: 300;
+    padding: 12px 24px;
+  }
+}
+
+.hero-txt {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 8px;
+    
+    /* Keeps spacing consistent regardless of screen height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem; /* Adjust this value to control exact spacing */
+    
+    width: 90%; /* Prevents text from touching screen edges on mobile */
+    text-align: center;
+    z-index: 1;
+    pointer-events: none;
 }
+
+.hero-txt h1 {
+    color: white;
+    margin: 0; /* Removes default browser spacing */
+    font-size: clamp(2rem, 5vw, 8rem); /* Scales smoothly, never too small/large */
+    font-family: "Google Sans Flex", sans-serif;
+    font-weight: 550;
+    line-height: 1.1;
+}
+
+.hero-txt p {
+    color: white;
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 5rem);
+    font-family: "Google Sans Flex", sans-serif;
+    font-weight: 200;
+    line-height: 1.4;
+}
+
+.hero img {
+    opacity: 40%;
+    z-index: -1;
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    object-position: 30% 20%;
+    pointer-events: none;
+}
+
+
+.we-create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(6rem, 22vw, 24rem); /* Wide open space between text and menu */
+
+  padding: clamp(5rem, 15vh, 10rem) 6vw;
+  margin-top: -0.4vh;
+  position: relative;
+  z-index: 1;
+}
+
+.we-create p {
+  color: white;
+  font-size: clamp(2.75rem, 8vw, 9rem);
+  font-family: "Google Sans Flex", sans-serif;
+  font-weight: 550;
+  line-height: 0.85;
+  text-align: left;
+  margin: 0; /* Removed 10vw left margin so it centers cleanly as a pair */
+  pointer-events: none;
+}
+
+.we-create ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 0 25px 0;
+  
+  /* Stacked menu items with underlines */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.we-create ul li a {
+  display: inline-block;
+  color: white;
+  text-align: left;
+  padding: 4px 0;
+  font-family: "Google Sans Flex", sans-serif;
+  font-weight: 550;
+  font-size: clamp(1.5rem, 4vw, 6rem);
+  opacity: 0.5;
+
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-decoration-thickness: clamp(4px, 0.85vw, 10px);
+  text-underline-offset: clamp(6px, 1.15vw, 20px);
+  transition: opacity 0.3s, text-decoration-color 0.3s;
+}
+
+.we-create ul li a:hover {
+  opacity: 1;
+  text-decoration-color: transparent;
+}
+
+/* Mobile: Stack vertically and keep centered */
+@media (max-width: 768px) {
+  .we-create {
+    flex-direction: column;
+    gap: 3.5rem;
+    padding: 10vh 6vw;
+  }
+
+  .we-create p {
+    text-align: center;
+  }
+
+  .we-create ul {
+    align-items: center;
+  }
+
+  .we-create ul li a {
+    text-align: center;
+  }
+}
+
+.contact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  /* Replaces fixed vh heights so the section grows safely if text wraps */
+  min-height: clamp(280px, 44vh, 500px);
+  padding: clamp(3rem, 8vh, 6rem) 5vw;
+  margin-top: -0.4vh;
+  overflow: hidden; /* Prevents image bleed or horizontal scrollbars */
+}
+
+.contact p {
+  position: relative;
+  z-index: 1;
+  color: white;
+  font-size: clamp(1.75rem, 4vw, 6rem);
+  font-family: "Google Sans Flex", sans-serif;
+  font-weight: 550;
+  line-height: 1.1; /* Prevents wrapped lines from colliding on mobile */
+  text-align: center;
+  margin: 0;
+  pointer-events: none;
+}
+
+.contact a {
+  color: white;
+  text-decoration: underline;
+  pointer-events: auto;
+  transition: opacity 0.3s;
+}
+
+.contact a:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.contact img {
+  position: absolute;
+  inset: 0; /* Stretches cleanly to match .contact's exact width and height */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  /* Percentage focal point locks the exact same subject area on any aspect ratio */
+  /* Adjust the second number (e.g., 20%, 35%, 50%) to frame your image's focal point */
+  object-position: 50% 25%;
+  
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+footer {
+  background-color: rgb(8, 8, 8);
+  width: 100%;
+  min-height: 45vh;
+  color: white;
+  padding: clamp(3rem, 8vh, 6rem) 5vw 2rem;
+  box-sizing: border-box;
+  font-family: "Google Sans Flex", sans-serif;
+
+  /* Automatically pushes footer > p to the bottom without needing padding-top: 47vh */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+/* Targets only the bottom copyright <p>, without affecting .info-p p */
+footer > p {
+  font-weight: 300;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  text-align: center;
+  margin: 0;
+  padding-top: 2rem;
+  opacity: 0.7;
+}
+
+.info-p p {
+  text-align: left;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  line-height: 1.85; /* Matches 30px line-height proportionally */
+  margin: 5 0 0 1vw; /* Combined with footer's 5vw padding = your exact 6vw left offset */
+  opacity: 0.5;
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile: Center-align cleanly on small screens */
+@media (max-width: 768px) {
+  .info-p p {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+/**-----------------------PHOTOGRAPHY---------------------------**/
+
+.hero-p {
+    position: absolute;
+    top: 50%;
+    left: 15vw;
+    transform: translateY(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+
+    width: 80vw;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-p h1 {
+    color: white;
+    margin: 0;
+    font-size: clamp(2.25rem, 5vw, 8rem);
+    font-family: "Google Sans Flex", sans-serif;
+    font-weight: 550;
+    line-height: 1.05;
+    text-align: left;
+
+    /* Forces longer headings onto 2 balanced lines instead of one ultra-wide line */
+    max-width: 14ch; 
+    text-wrap: balance;
+}
+
+.hero-p p {
+    color: white;
+    margin: 0;
+    font-size: clamp(0.95rem, 1vw, 1.5rem);
+    font-family: "Google Sans Flex", sans-serif;
+    font-weight: 200;
+    line-height: 1.5;
+    text-align: left;
+
+    /* Constrains paragraph width so longer sentences wrap immediately onto 2 lines */
+    max-width: 42ch;
+    text-wrap: pretty;
+}
+
+@media (max-width: 768px) {
+    .hero-p {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 88%;
+        align-items: center;
+    }
+
+    .hero-p h1,
+    .hero-p p {
+        text-align: center;
+    }
+}
+
+.s-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.9rem, 1.2vw, 2rem); /* Replaces margin-top: -4vh so text never overlaps */
+
+  color: white;
+  text-align: center;
+  font-family: "Google Sans Flex", sans-serif;
+  padding: clamp(3rem, 8vh, 6rem) 6vw clamp(5rem, 15vh, 10rem);
+}
+
+.s-info h3 {
+  margin: 0; /* Removes default browser heading margins */
+  font-weight: 550;
+  font-size: clamp(1.75rem, 4vw, 5rem);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.s-info p {
+  margin: 0;
+  font-size: clamp(0.6rem, 0.9vw, 1.5rem); /* Keeps the subtle desktop look, stays readable on mobile */
+  font-family: "Google Sans Flex", sans-serif;
+  font-weight: 200;
+  line-height: 1.5;
+  max-width: 60ch; /* Keeps centered paragraphs from stretching too wide */
+  text-wrap: pretty;
+  padding-bottom: 5vh;
+}
+
+.display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal images side-by-side on desktop */
+  gap: clamp(0.75rem, 0.1vw, 0.1rem);    /* Clean spacing between images; set to 0 if they should touch */
+
+  width: min(80vw, 1400px);              /* Matches your 80vw desktop width */
+  margin: 0 auto;                        /* Centers the 80vw container cleanly */
+  padding-bottom: clamp(3rem, 10vh, 7rem);
+}
+
+.display img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;  /* Optional: keeps all 3 images the exact same height; remove if natural aspect ratio is preferred */
+  object-fit: cover;
+}
+
+/* Tablet & Mobile: Stack into 1 column (or use repeat(2, 1fr) for 2-by-2 on tablets) */
+@media (max-width: 768px) {
+  .display {
+    grid-template-columns: 1fr;
+    width: 90vw;
+    gap: 1.25rem;
+  }
+}
+
+.s-info-a a {
+  text-align: center;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 50px;
+  background-color: white;
+  text-decoration: none;
+  color: black;
+  transition-duration: 0.3s;
+}
+
+.s-info-a a:hover {
+  color: white;
+  background-color: #3a3a3a;
+  transition-duration: 0.3s;
+}
+
+.s-info video {
+  display: block;
+  width: 100%;               /* Shrinks smoothly to fit any mobile screen */
+  max-width: 80vw;           /* Limits width on desktop (or use e.g. 1100px) */
+  height: auto;              /* Keeps original video aspect ratio without cropping */
+  margin-top: clamp(1.5rem, 4vh, 3.5rem); /* Clean space between paragraph and video */
+  border-radius: 12px;       /* Optional: remove if you want sharp 90° corners */
+  object-fit: cover;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+  .s-info video {
+    max-width: 100%; /* Uses full available width inside the 6vw padding on phones */
+  }
+}
+
+/************************RESPONSIVE********************************************RESPONSIVE********************************************RESPONSIVE********************************************RESPONSIVE********************/
