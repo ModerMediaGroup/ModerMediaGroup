@@ -29,11 +29,13 @@ body {
   color: white;
   position: absolute;
   margin-top: 1vh;
-  margin-left: 2vw;
+  margin-left: 1.5rem;
   font-family: "Google Sans Flex", sans-serif;
   font-weight: 200;
   pointer-events: all;
-  z-index: 11;
+  z-index: 12;
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 nav {
@@ -46,7 +48,7 @@ nav {
   justify-content: flex-end;
   align-items: center;
   padding: 2vh 2vw 0;
-  z-index: 100;
+  z-index: 10;
 }
 
 nav ul {
@@ -193,16 +195,17 @@ nav .active a {
     object-fit: cover;
     width: 100vw;
     height: 100vh;
-    object-position: 30% 20%;
+    object-position: 37% 20%;
     pointer-events: none;
 }
 
 
 .we-create {
   display: flex;
+  flex-direction: column; /* Stacks items vertically one on top of each other */
   justify-content: center;
   align-items: center;
-  gap: clamp(6rem, 22vw, 24rem); /* Wide open space between text and menu */
+  gap: clamp(2rem, 6vh, 5rem); /* Adjusted vertical spacing between stacked items */
 
   padding: clamp(5rem, 15vh, 10rem) 6vw;
   margin-top: -0.4vh;
@@ -210,69 +213,40 @@ nav .active a {
   z-index: 1;
 }
 
-.we-create p {
+.we-create h3 {
   color: white;
-  font-size: clamp(2.75rem, 8vw, 9rem);
+  font-size: clamp(2rem, 8vw, 6rem);
   font-family: "Google Sans Flex", sans-serif;
   font-weight: 550;
-  line-height: 0.85;
-  text-align: left;
-  margin: 0; /* Removed 10vw left margin so it centers cleanly as a pair */
+  line-height: 1; /* Adjusted from 0.85 so text sits cleanly without vertical clipping */
+  text-align: center;
+  white-space: nowrap; /* Prevents the text from wrapping onto a second line */
+  margin-bottom: 3rem;
+  margin-top: -2rem;
   pointer-events: none;
 }
 
-.we-create ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0 0 25px 0;
-  
-  /* Stacked menu items with underlines */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(1.25rem, 2.5vw, 2.5rem);
-}
-
-.we-create ul li a {
-  display: inline-block;
+.we-create p { /* Replace selector if targeting a different element */
   color: white;
-  text-align: left;
-  padding: 4px 0;
+  font-size: clamp(1rem, 3vw, 2rem);
   font-family: "Google Sans Flex", sans-serif;
-  font-weight: 550;
-  font-size: clamp(1.5rem, 4vw, 6rem);
-  opacity: 0.5;
-
-  text-decoration: underline;
-  text-decoration-color: white;
-  text-decoration-thickness: clamp(4px, 0.85vw, 10px);
-  text-underline-offset: clamp(6px, 1.15vw, 20px);
-  transition: opacity 0.3s, text-decoration-color 0.3s;
+  font-weight: 200;
+  line-height: 1.2; /* Slightly looser line-height so wrapped text on mobile stays readable */
+  text-align: center;
+  
+  /* Responsive spacing and wrapping */
+  margin-top: clamp(-1.5rem, -2vw, -0.5rem); /* Scales negative margin smoothly with screen size */
+  max-width: 90vw; /* Keeps text inside screen bounds on narrow phones */
+  white-space: normal; /* Allows wrapping on small screens instead of overflowing */
+  text-wrap: balance; /* Keeps wrapped lines even and centered */
+  pointer-events: none;
 }
 
-.we-create ul li a:hover {
-  opacity: 1;
-  text-decoration-color: transparent;
-}
-
-/* Mobile: Stack vertically and keep centered */
-@media (max-width: 768px) {
-  .we-create {
-    flex-direction: column;
-    gap: 3.5rem;
-    padding: 10vh 6vw;
-  }
-
+/* Optional: Force single line only on larger screens where it fits */
+@media (min-width: 768px) {
   .we-create p {
-    text-align: center;
-  }
-
-  .we-create ul {
-    align-items: center;
-  }
-
-  .we-create ul li a {
-    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
   }
 }
 
@@ -294,7 +268,7 @@ nav .active a {
   position: relative;
   z-index: 1;
   color: white;
-  font-size: clamp(1.75rem, 4vw, 6rem);
+  font-size: clamp(1.5rem, 4vw, 6rem);
   font-family: "Google Sans Flex", sans-serif;
   font-weight: 550;
   line-height: 1.1; /* Prevents wrapped lines from colliding on mobile */
@@ -324,7 +298,7 @@ nav .active a {
   
   /* Percentage focal point locks the exact same subject area on any aspect ratio */
   /* Adjust the second number (e.g., 20%, 35%, 50%) to frame your image's focal point */
-  object-position: 50% 25%;
+  object-position: 10% 25%;
   
   opacity: 0.4;
   pointer-events: none;
@@ -350,7 +324,7 @@ footer {
 /* Targets only the bottom copyright <p>, without affecting .info-p p */
 footer > p {
   font-weight: 300;
-  font-size: clamp(0.85rem, 1vw, 1rem);
+  font-size: clamp(0.8rem, 1vw, 1rem);
   text-align: center;
   margin: 0;
   padding-top: 2rem;
@@ -441,7 +415,7 @@ footer > p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.9rem, 1.2vw, 2rem); /* Replaces margin-top: -4vh so text never overlaps */
+  gap: clamp(2rem, 1.2vw, 2rem); /* Replaces margin-top: -4vh so text never overlaps */
 
   color: white;
   text-align: center;
@@ -452,14 +426,14 @@ footer > p {
 .s-info h3 {
   margin: 0; /* Removes default browser heading margins */
   font-weight: 550;
-  font-size: clamp(1.75rem, 4vw, 5rem);
+  font-size: clamp(2rem, 4vw, 5rem);
   line-height: 1.1;
   text-wrap: balance;
 }
 
 .s-info p {
   margin: 0;
-  font-size: clamp(0.6rem, 0.9vw, 1.5rem); /* Keeps the subtle desktop look, stays readable on mobile */
+  font-size: clamp(0.9rem, 0.9vw, 1.5rem); /* Keeps the subtle desktop look, stays readable on mobile */
   font-family: "Google Sans Flex", sans-serif;
   font-weight: 200;
   line-height: 1.5;
